@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+import click
+import os
+
+@click.command()
+def down():
+    command = 'docker-compose -f ./laravel-docker/docker-compose.yml down'
+    os.system(command)
+
+if __name__ == '__main__':
+    down()

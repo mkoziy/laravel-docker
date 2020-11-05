@@ -1,0 +1,90 @@
+version: '3'
+
+networks:
+  laravel:
+
+services:
+  site:
+    build:
+      context: ..
+      dockerfile: laravel-docker/nginx.dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "9001:9001"
+    volumes:
+      - ../:/var/www/html:delegated
+    depends_on:
+      - php
+      - postgres
+    networks:
+      - laravel
+
+  postgres:
+    image: "postgres"
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: homestead
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: glossary
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - laravel
+
+  php:
+    build:
+      context: ..
+      dockerfile: laravel-docker/php.dockerfile
+    container_name: php
+    volumes:
+      - ../:/var/www/html:delegated
+      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    ports:
+      - "9000:9000"
+    networks:
+      - laravel
+
+  composer:
+    build:
+      context: ..
+      dockerfile: laravel-docker/composer.dockerfile
+    container_name: composer
+    volumes:
+      - ../:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - php
+    user: laravel
+    networks:
+      - laravel
+    entrypoint: ['composer', '--ignore-platform-reqs']
+
+  artisan:
+    build:
+      context: ..
+      dockerfile: laravel-docker/php.dockerfile
+    container_name: artisan
+    volumes:
+      - ../:/var/www/html:delegated
+    depends_on:
+      - postgres
+    working_dir: /var/www/html
+    user: laravel
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks:
+      - laravel
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: laravel-docker/frontend.dockerfile
+    container_name: yarn
+    volumes:
+      - ../:/var/www/html:delegated
+    working_dir: /var/www/html
+    user: laravel
+    networks:
+      - laravel
