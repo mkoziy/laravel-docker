@@ -7,7 +7,7 @@ services:
   site:
     build:
       context: ..
-      dockerfile: laravel-docker/nginx.dockerfile
+      dockerfile: docker/nginx.dockerfile
     container_name: nginx
     ports:
       - "80:80"
@@ -37,7 +37,7 @@ services:
   php:
     build:
       context: ..
-      dockerfile: laravel-docker/php.dockerfile
+      dockerfile: docker/php.dockerfile
     container_name: php
     volumes:
       - ../:/var/www/html:delegated
@@ -50,7 +50,7 @@ services:
   composer:
     build:
       context: ..
-      dockerfile: laravel-docker/composer.dockerfile
+      dockerfile: docker/composer.dockerfile
     container_name: composer
     volumes:
       - ../:/var/www/html
@@ -65,7 +65,7 @@ services:
   artisan:
     build:
       context: ..
-      dockerfile: laravel-docker/php.dockerfile
+      dockerfile: docker/php.dockerfile
     container_name: artisan
     volumes:
       - ../:/var/www/html:delegated
@@ -80,7 +80,7 @@ services:
   frontend:
     build:
       context: ..
-      dockerfile: laravel-docker/frontend.dockerfile
+      dockerfile: docker/frontend.dockerfile
     container_name: yarn
     volumes:
       - ../:/var/www/html:delegated
