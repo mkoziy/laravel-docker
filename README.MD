@@ -9,8 +9,8 @@
 * Go to your project directory and execute `git clone git@github.com:mkoziy/laravel-docker.git -b master --single-branch docker`
 
 ### Usage
-* `laravel-docker/up`
-* `laravel-docker/down`
+* `docker/up`
+* `docker/down`
 
 #### Services and ports
 * nginx - `:80`
