@@ -11,4 +11,3 @@ def up(d):
 
 if __name__ == '__main__':
     up()
-w
