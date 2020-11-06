@@ -1,6 +1,6 @@
 FROM php:7.4-fpm-alpine
 
-ADD ./laravel-docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
+ADD ./docker/php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 RUN apk --no-cache --update --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/main/ add gmp-dev
 
