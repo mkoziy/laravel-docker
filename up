@@ -1,13 +1,3 @@
-#!/usr/bin/python
+#!/bin/bash
 
-import click
-import os
-
-@click.command()
-@click.option("-d", is_flag=True, default=False)
-def up(d):
-    command = 'docker-compose -f ./docker/docker-compose.yml up %s'
-    os.system(command % ('-d') if d else command % (''))
-
-if __name__ == '__main__':
-    up()
+docker-compose -f ./docker/docker-compose.yml up $@
