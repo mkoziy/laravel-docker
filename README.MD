@@ -11,6 +11,7 @@
 ### Usage
 * `docker/up`
 * `docker/down`
+* `docker/artisan`
 
 #### Services and ports
 * nginx - `80`
