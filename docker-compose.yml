@@ -72,7 +72,7 @@ services:
       - postgres
     working_dir: /var/www/html
     user: laravel
-    entrypoint: ['php', '/var/www/html/artisan']
+    entrypoint: ['php', '/var/www/html/artisan', '-V']
     networks:
       - laravel
 
