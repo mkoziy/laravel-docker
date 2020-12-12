@@ -59,7 +59,7 @@ services:
     user: laravel
     networks:
       - laravel
-    entrypoint: ['composer', '-V']
+    entrypoint: ['composer']
 
   artisan:
     build:
