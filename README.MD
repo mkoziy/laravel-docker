@@ -12,12 +12,13 @@
 * `docker/up`
 * `docker/down`
 * `docker/artisan`
+* `docker/composer`
 
 #### Services and ports
 * nginx - `80`
 * php - `9000`
 * xdebug - `9001`
-* postgresql - `5432` 
+* postgresql - `5432`
 
 ### Used libraries/projects
 
